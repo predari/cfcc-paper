@@ -1,0 +1,349 @@
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+%\documentclass[10pt, conference, hidelinks]{IEEEtran}
+\bibliographystyle{IEEEtran}
+
+% Recommended macros
+%\usepackage{amssymb}
+\usepackage{amsmath,amssymb}
+%\usepackage[cmex10]{amsmath}
+\usepackage{array}
+\usepackage{mdwtab}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{fixltx2e}
+%\usepackage{stfloats}
+\usepackage{dblfloatfix} 
+\usepackage{url}
+\usepackage[pdfusetitle, pdfauthor={Roland Glantz, Maria Predari and Henning Meyerhenke}]{hyperref}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% Eigene Makros
+\usepackage[dvipsnames]{xcolor}
+\usepackage{xspace}
+\usepackage{numprint}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{float}
+\usepackage{placeins}
+\newfloat{algorithm}{t}{lop}
+\usepackage{graphicx}
+
+% equalize columns on last page
+\usepackage{flushend}
+
+
+\newtheorem{lemma}{Lemma}%[section]
+\newtheorem{notation}{Notation}%[section]
+\newtheorem{definition}{Definition}%[section]
+\newtheorem{proposition}{Proposition}%[section]
+
+\renewcommand{\floatpagefraction}{0.9}
+%\newcommand{\vars}{\texttt}
+
+%\newtheorem{consDefinition}[example]{Definition}
+%\newtheorem{consTheorem}[example]{Theorem}
+%\newtheorem{consProposition}[example]{Proposition}
+
+% user-specified commands
+%\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+%\newcommand{\llminimal}{${\|\cdot\|}_2$-minimal\xspace}
+\newcommand{\Pro}[1]{\mathbf{Pr} \left[\,#1\,\right]}
+\newcommand{\pro}[1]{\mathbf{Pr} [\,#1\,]}
+\newcommand{\Ex}[1]{\mathbb{E} \left[\,#1\,\right]}
+\newcommand{\ex}[1]{\mathbb{E} [\,#1\,]}
+\newcommand{\hit}{- [\pi]_s (H[v,s]-H[u,s])}
+
+\newcommand{\centre}[1]{z_{#1}}
+\newcommand{\centres}{Z}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\maxdeg}{\operatorname{maxdeg}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\res}{\operatorname{res}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\cond}{\operatorname{cond}}
+\newcommand{\Cond}{\operatorname{Cond}}
+\newcommand{\proxy}{\operatorname{proxy}}
+\newcommand{\excond}{\operatorname{ex\_cond}}
+\newcommand{\exres}{\operatorname{ex\_res}}
+\newcommand{\exalg}{\operatorname{ex\_alg}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Vor}{\operatorname{Vor}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\LL}{\mathbf{L}}
+%\newcommand{\L}{\mathbf{L}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\f}{\hat{f}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\dhat}{d}
+\newcommand{\llminimal}{${\|\cdot\|}_2$-minimal\xspace}
+\newcommand{\NP}{$\mathcal{NP}$}
+\newcommand{\disjbigcup}{\mathop{\dot{\bigcup}}} 
+\newcommand{\disjcup}{\mathop{\dot{\cup}}} 
+\newcommand{\bigO}{\mathcal{O}} 
+\newcommand{\polylog}{\operatorname{polylog}} 
+\newcommand{\dotcup}{\stackrel{.}{\cup}}
+
+\DeclareMathOperator{\intraWeight}{\it intraWeight}
+\DeclareMathOperator{\interWeight}{\it interWeight}
+\DeclareMathOperator{\subtreeVol}{\it subtreeVol}
+\DeclareMathOperator{\cutWeight}{\it cutWeight}
+\DeclareMathOperator{\conduct}{\it conduct}
+\DeclareMathOperator{\inCutSet}{\it inCutSet}
+
+\newcommand{\iec}{\textit{i.\,e.},\xspace}
+\newcommand{\ie}{\textit{i.\,e.}\xspace}
+\newcommand{\Ie}{\textit{I.\,e.}\xspace}
+\newcommand{\egc}{\textit{e.\,g.},\xspace}
+\newcommand{\eg}{\textit{e.\,g.}\xspace}
+\newcommand{\Eg}{\textit{E.\,g.}\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+\newcommand{\Wlog}{w.\,l.\,o.\,g.\xspace}
+\newcommand{\wrt}{w.\,r.\,t.\xspace}
+\newcommand{\cf}{cf.\xspace}
+
+\newcommand{\mswap}{\textsc{TiME}\xspace}
+\newcommand{\karma}{\textsc{KarMa}\xspace}
+\newcommand{\greedyallc}{\textsc{GreedyAllC}\xspace}
+\newcommand{\dibap}{\textsc{DibaP}\xspace}
+\newcommand{\pdibap}{\textsc{PDibaP}\xspace}
+\newcommand{\bubble}{\textsc{Bubble}\xspace}
+\newcommand{\smooth}{\textsc{Smooth}}
+\newcommand{\bubfosc}{\textsc{Bubble-FOS/C}\xspace}
+\newcommand{\bubfost}{\textsc{Bubble-FOS/T}\xspace}
+\newcommand{\metis}{\textsc{METIS}\xspace}
+\newcommand{\kmetis}{\textsc{kMeTiS}\xspace}
+\newcommand{\parmetis}{\textsc{ParMETIS}\xspace}
+\newcommand{\kappart}{\textsc{KaPPa}\xspace}
+\newcommand{\kahip}{\textsc{KaHIP}\xspace}
+\newcommand{\jostle}{\textsc{Jostle}\xspace}
+\newcommand{\zoltan}{\textsc{Zoltan}\xspace}
+\newcommand{\parkway}{\textsc{Parkway}\xspace}
+\newcommand{\graclus}{\textsc{Graclus}\xspace}
+\newcommand{\party}{\textsc{Party}\xspace}
+\newcommand{\scotch}{\textsc{Scotch}\xspace}
+\newcommand{\thrsh}{$\mathtt{thrsh}$\xspace}
+\newcommand{\trunccons}{\textsc{TruncCons}\xspace}
+\newcommand{\consol}{\texttt{Consolidation}\xspace}
+\newcommand{\consols}{\texttt{Consolidations}\xspace}
+\newcommand{\asspart}{\texttt{AssignPartition}\xspace}
+\newcommand{\assclus}{\texttt{AssignCluster}\xspace}
+\newcommand{\asssd}{\texttt{AssignSubdomain}\xspace}
+\newcommand{\compcen}{\texttt{ComputeCenters}\xspace}
+\newcommand{\initcen}{\textsc{LoadBasedInitialCenters}\xspace}
+\newcommand{\NN}{\mbox{\rm I$\!$N}}
+\newcommand{\closu}[1]{\overline{#1}}
+\newcommand{\djoko}{Djokovi\'{c} relation\xspace}
+\newcommand{\djokoRelated}{Djokovi\'{c}\xspace related\xspace}
+\newcommand{\subE}[1]{{#1}_{\mathcal{E}}}
+\newcommand{\comm}{\operatorname{Co}}
+
+\newcommand{\argmin}{\operatorname{argmin}\xspace}
+\newcommand{\argmax}{\operatorname{argmax}\xspace}
+\newcommand{\cc}{\operatorname{Coco}\xspace}
+\newcommand{\divers}{\operatorname{Div}\xspace}
+\newcommand{\ccd}{\operatorname{Coco^+}\xspace}
+\newcommand{\dil}{\operatorname{dil}\xspace}
+\newcommand{\contract}{\operatorname{contract}\xspace}
+\newcommand{\assemble}{\operatorname{assemble}\xspace}
+\newcommand{\modulo}{\operatorname{mod}\xspace}
+
+\newcommand{\parent}{\operatorname{parent}\xspace}
+\newcommand{\oldParent}{\operatorname{oldParent}\xspace}
+\newcommand{\newParent}{\operatorname{newParent}\xspace}
+\newcommand{\newParentLabel}{\operatorname{newParentLabel}\xspace}
+\newcommand{\prefLabel}{\operatorname{prefLabel}\xspace}
+
+\newcommand{\initial}{\textsc{Identity}\xspace}
+\newcommand{\initialM}{\textsc{Identity}_{\textsc{g}} \xspace}
+\newcommand{\initialMO}{\textsc{Identity}_{\textsc{n}} \xspace}
+\newcommand{\random}{\textsc{Random}\xspace}
+\newcommand{\randomM}{\textsc{Random}_{\textsc{g}} \xspace}
+\newcommand{\randomMO}{\textsc{Random}_{\textsc{n}} \xspace}
+\newcommand{\rcm}{\textsc{RCM}\xspace}
+\newcommand{\rcmM}{\textsc{RCM}_{\textsc{g}} \xspace}
+\newcommand{\rcmMO}{\textsc{RCM}_{\textsc{n}} \xspace}
+\newcommand{\durebi}{\textsc{DRB}\xspace}
+\newcommand{\durebiM}{\textsc{DRB}_{\textsc{g}} \xspace}
+\newcommand{\durebiMO}{\textsc{DRB}_{\textsc{n}} \xspace}
+\newcommand{\greedyall}{\textsc{GreedyAll}\xspace}
+\newcommand{\greedyallM}{\textsc{GreedyAll}_{\textsc{g}} \xspace}
+\newcommand{\greedyallMO}{\textsc{GreedyAll}_{\textsc{n}} \xspace}
+\newcommand{\greedyallcM}{\textsc{GreedyAllC} \xspace}
+\newcommand{\greedyallcMO}{\textsc{greedyAllC}_{\textsc{n}} \xspace}
+\newcommand{\greedymin}{\textsc{GreedyMin}\xspace}
+\newcommand{\greedyminM}{\textsc{GreedyMin}_{\textsc{g}} \xspace}
+\newcommand{\greedyminMO}{\textsc{GreedyMin}_{\textsc{n}} \xspace}
+\newcommand{\greedyminc}{\textsc{GreedyMinC}\xspace}
+\newcommand{\greedymincM}{\textsc{GreedyMinC}_{\textsc{g}} \xspace}
+\newcommand{\greedymincMO}{\textsc{GreedyMinC}_{\textsc{n}} \xspace}
+\newcommand{\walshawlarge}{\textsc{WalshawLarge}\xspace}
+\newcommand{\complexnets}{\textsc{ComplexNets}\xspace}
+\newcommand{\gpmetis}{\textsc{gpMetis}\xspace}
+\newcommand{\ndmetis}{\textsc{ndMetis}\xspace}
+
+
+\newcommand{\cfc}{$\mathcal{CFCC}$}
+
+
+
+\renewcommand{\arraystretch}{1.4}
+\newcommand{\hmey}[1]{\textcolor{{ForestGreen}{HM: #1}\xspace}
+\newcommand{\mpre}[1]{\textcolor{red}{#1}\xspace}
+% \renewcommand{\hmey}[1]{}
+%\renewcommand{\rgla}[1]{}
+
+
+\pagestyle{plain}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{\IEEEauthorblockN{Gabriel Stoszek}
+\IEEEauthorblockA{Karlsruhe Institute of Technology (KIT), Germany\\
+% Karlsruhe, Germany\\
+Email: rolandglantz@gmail.com}
+\and
+\IEEEauthorblockN{Maria Predari}
+\IEEEauthorblockA{University of Cologne, Germany\\
+% Cologne, Germany\\
+Email: mpredari@uni-koeln.de}
+\and
+\IEEEauthorblockN{Henning Meyerhenke}
+\IEEEauthorblockA{University of Cologne, Germany\\
+% Cologne, Germany\\
+Email: h.meyerhenke@uni-koeln.de}
+}
+
+
+\makeatletter
+\algrenewcommand\ALG@beginalgorithmic{\small}
+\makeatother
+
+\begin{document}
+ \title{Fast Algorithms for Group Current-flow Closeness Centrality}
+
+\maketitle 
+
+\begin{abstract}
+  Current flow closeness centrality (\cfc) has a better discriminating ability than the ordinary closeness centrality based on shortest paths.
+  Recently, the definition of the problem has extended to the group case. More precisely, the problem is the one of   
+  finding a subset $S$ of $k$ vertices to maximize its \cfc $C(S)$. In this work we propose two new algorithms, an exact and
+  an approximation one. Both algorithms use the multilevel framework in order to reduce the problem
+  and solve the underlying laplacian system on a smaller instance.
+  The approximation algorithms employs local techniques that use already existing information from previous steps
+  reduce the search space. Extensive experiments on model and real networks demonstrate that our algorithms
+  outperform existing work. As a result, our algorihtms are able to process massive networks with more than a billion vertices.
+\end{abstract}
+
+\begin{IEEEkeywords}
+network analysis; current-flow closeness centrality
+\end{IEEEkeywords}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{sec:intro}
+
+
+\paragraph{Related work and motivation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Problem defintion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Contribution and outline}
+
+\section{Exact algorithm}
+\label{sec:multiSwap}
+\subsection{Running time analysis}
+
+\section{Approximation algorithm}
+\label{sec:multiSwap}
+\subsection{Running time analysis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experiments}
+\label{sec:experiments}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Description of experiments}
+\label{subsec:setup}
+%
+In this section we specify our test instances, our experimental setup
+and the way we evaluate the improvements induced by our methods.
+
+The application graphs are the 15 complex networks used
+in~\cite{Safro2012a} %
+All computations are based on sequential C++ code and run on a workstation with two
+4-core Intel(R) Core(TM) i7-2600K processors at 3.40GHz.
+% Our code is written
+%in C++ and compiled with GCC 4.7.1.
+
+
+\begin{table*}[!b]
+\caption{Complex networks used for benchmarking.}
+\label{tab:complex}
+\begin{center}
+%\begin{footnotesize}
+%\scalebox{0.8}{
+\begin{tabular}{ l | r | r | c }
+Name & \#vertices & \#edges & Type\\ \hline \hline
+p2p-Gnutella          & \numprint{6405}   & \numprint{29215}    & file-sharing network\\\hline
+PGPgiantcompo         & \numprint{10680}  & \numprint{24316}    & largest connected component in network of PGP users\\\hline
+email-EuAll           & \numprint{16805}  & \numprint{60260}    & network of connections via email\\\hline
+as-22july06           & \numprint{22963}  & \numprint{48436}    & network of internet routers \\\hline
+soc-Slashdot0902      & \numprint{28550}  & \numprint{379445}   & news network\\\hline
+loc-brightkite\_edges & \numprint{56739}  & \numprint{212945}   & location-based friendship network\\\hline
+loc-gowalla\_edges    & \numprint{196591} & \numprint{950327}   & location-based friendship network \\\hline
+citationCiteseer      & \numprint{268495} & \numprint{1156647}  & citation network\\\hline
+coAuthorsCiteseer     & \numprint{227320} & \numprint{814134}   & citation network\\\hline
+wiki-Talk             & \numprint{232314} & \numprint{1458806}  & network of user interactions through edits\\\hline
+coAuthorsDBLP         & \numprint{299067} & \numprint{977676}   & citation network\\\hline
+web-Google            & \numprint{356648} & \numprint{2093324}  & hyperlink network of web pages\\\hline
+coPapersCiteseer      & \numprint{434102} & \numprint{16036720} & citation network\\\hline
+coPapersDBLP          & \numprint{540486} & \numprint{15245729} & citation network\\\hline
+as-skitter            & \numprint{554930} & \numprint{5797663}  & network of internet service providers\\\hline
+\end{tabular}
+%}
+\end{center}
+\end{table*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experimental Results}
+\label{subsec:results}
+%
+The detailed experimental results are displayed in Tables~\ref{tab:extra_social_initial_1}
+through~\ref{tab:extra_social_brandfassL_2}. Here is our summary and interpretation:
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+\label{sec:conclusions}
+
+\section*{Acknowledgments}
+%
+This work is partially supported by German Research Foundation (DFG) grant ME 3619/2-1.
+Large parts of this work were carried out while H.M. was affiliated with Karls\-ruhe
+Institute of Technology.
+
+
+%\hmey{bibitems are too long if they contain links.}
+
+% \clearpage 
+%%
+%% Bibliography
+%%
+\nocite{*}
+\bibstyle{IEEEtran}
+%\bibliography{biblio}                                     
+
+\end{document}
