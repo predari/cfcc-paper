@@ -191,8 +191,9 @@
 
 
 \renewcommand{\arraystretch}{1.4}
-\newcommand{\hmey}[1]{\textcolor{{ForestGreen}{HM: #1}\xspace}
+
 \newcommand{\mpre}[1]{\textcolor{red}{#1}\xspace}
+\newcommand{\gsto}[1]{\textcolor{blue}{#1}\xspace}
 % \renewcommand{\hmey}[1]{}
 %\renewcommand{\rgla}[1]{}
 
@@ -201,20 +202,29 @@
 
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\author{\IEEEauthorblockN{Gabriel Stoszek}
-\IEEEauthorblockA{Karlsruhe Institute of Technology (KIT), Germany\\
-% Karlsruhe, Germany\\
-Email: rolandglantz@gmail.com}
+\author{
+\IEEEauthorblockN{Blah Blah}
+\IEEEauthorblockA{Humboldt University, Berlin, Germany\\
+Email: kdfkfd@informatik.hu-berlin.de}
 \and
-\IEEEauthorblockN{Maria Predari}
-\IEEEauthorblockA{University of Cologne, Germany\\
-% Cologne, Germany\\
-Email: mpredari@uni-koeln.de}
-\and
-\IEEEauthorblockN{Henning Meyerhenke}
-\IEEEauthorblockA{University of Cologne, Germany\\
-% Cologne, Germany\\
-Email: h.meyerhenke@uni-koeln.de}
+\IEEEauthorblockN{Blah Blah}
+\IEEEauthorblockA{Humboldt University, Berlin, Germany\\
+Email: lrpwor@informatik.hu-berlin.de}
+%% \IEEEauthorblockN{Gabriel Stoszek}
+%% \IEEEauthorblockA{University of Cologne, Cologne, Germany\\
+%% Email: gstoszek@gmail.com}
+%% \and
+%% \IEEEauthorblockN{Maria Predari}
+%% \IEEEauthorblockA{Humboldt University, Berlin, Germany\\
+%% Email: maria.predari@informatik.hu-berlin.de}
+%% \and
+%% \IEEEauthorblockN{Henning Meyerhenke}
+%% \IEEEauthorblockA{Humboldt University, Berlin, Germany\\
+%% Email: henning.meyerhenke@informatik.hu-berlin.de}
+%% \and
+%% \IEEEauthorblockN{Eugenio Angriman}
+%% \IEEEauthorblockA{Humboldt University, Berlin, Germany\\
+%% Email: eugenio.angriman@informatik.hu-berlin.de}
 }
 
 
@@ -228,14 +238,21 @@ Email: h.meyerhenke@uni-koeln.de}
 \maketitle 
 
 \begin{abstract}
-  Current flow closeness centrality (\cfc) has a better discriminating ability than the ordinary closeness centrality based on shortest paths.
-  Recently, the definition of the problem has extended to the group case. More precisely, the problem is the one of   
-  finding a subset $S$ of $k$ vertices to maximize its \cfc $C(S)$. In this work we propose two new algorithms, an exact and
-  an approximation one. Both algorithms use the multilevel framework in order to reduce the problem
-  and solve the underlying laplacian system on a smaller instance.
-  The approximation algorithms employs local techniques that use already existing information from previous steps
-  reduce the search space. Extensive experiments on model and real networks demonstrate that our algorithms
-  outperform existing work. As a result, our algorihtms are able to process massive networks with more than a billion vertices.
+  Current flow closeness centrality (\cfc) has a better discriminating ability than the
+  ordinary closeness centrality based on shortest paths. \mpre{One line to define \cfc~for one node}
+  Recently, the definition of the problem was extended to the group case~\cite{Li18}.
+  More precisely, one aims at finding a subset $S$ of $k$ vertices to maximize
+  its \cfc $C(S)$. In this work we propose two new algorithms, an exact and
+  an approximation one. Both algorithms use the multilevel framework to reduce
+  the graph into smaller dimensions and
+  solve the underlying laplacian system on a smaller instance.
+  The solution is refined back to the original input
+  using local algorithms. %\mpre{Heuristics for the approx, closed formulas for the exact}
+  The approximation algorithm employs fast techniques that exploit knownledge
+  from previous levels to reduce the search space. Extensive experiments on synthetic
+  and real networks demonstrate that our algorithms
+  outperform existing work. As a result, our algorihtms are able to process massive
+  networks with more than a billion vertices in less than \mpre{numbers}.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -250,11 +267,37 @@ network analysis; current-flow closeness centrality
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \label{sec:intro}
+Networks are ubiquitous in so many areas of science. Some examples include.
+Finding the most important nodes in the graph can be very beneficial for the application.
+Many existing measurements of the importance of nodes exist. Examples are
+closeness centrality~\cite{}, betweenness centrality~\cite{}, etc.
+However the most common ones are based on simple shortest paths information
+and may fail to reveal important properties of the network. Resiliance to
+changes in the network should be taken into consideration. Nowadays many
+applications include data that change dynamically over time. Example: social networks
+are the addition/deletion of friendships. In suc dynamic scenarios resiliance
+of the node become even more important...
+
+\mpre{Goup closeness: add why we want to look at the goup case. }
+
+Unfortunately, the computation of the \cfc solely for one node is expensive.
+\mpre{Explain more here, see Elisabetta's paper on the connection to the laplacian solution~\cite{Bergamini16}}
+Computing the \cfc for all nodes in the graph becames prohibitive even for smaller graphs.
+in this paper we propose fast algorithms for the computation of the group current-flow
+closeness centrality in order to be able to process massive graphs.
 
 
 \paragraph{Related work and motivation}
+\mpre{Related work should not have a seperate section since it is rather small and recent.}
+Recently, the problem of group current-flow closeness centrality was introduced~\cite{Li18}.
+The authors formally define the problem and prove theoretical properties such as submodularity existence.
+They also present two algorithms, a deterministic one and an approximation one that
+are extenstions of previous work done in the context of group closeness centrality~\cite{Bergamini18}.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Problem defintion}
+\mpre{define graph, the problem, the connection to laplacian}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Contribution and outline}
 
@@ -342,8 +385,8 @@ Institute of Technology.
 %%
 %% Bibliography
 %%
-\nocite{*}
+%\nocite{*}
 \bibstyle{IEEEtran}
-%\bibliography{biblio}                                     
+\bibliography{biblio}                                     
 
 \end{document}
